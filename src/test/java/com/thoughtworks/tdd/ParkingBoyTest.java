@@ -86,7 +86,7 @@ public class ParkingBoyTest {
         Ticket wrongTicket=new Ticket("not fetch");
         //when
         Car fetchedCar= parkingBoy.fetch(wrongTicket);
-        String returnMessage=parkingLot.getMessageToCustom();
+        String returnMessage=parkingBoy.passMessageToCustom();
         //then
         assertSame(returnMessage,"Unrecognized parking ticket.");
     }
@@ -100,8 +100,25 @@ public class ParkingBoyTest {
 
         //when
         Car fetchedCar= parkingBoy.fetch(null);
-        String returnMessage=parkingLot.getMessageToCustom();
+        String returnMessage=parkingBoy.passMessageToCustom();
         //then
         assertSame(returnMessage,"Please provide your parking ticket.");
+    }
+    @Test
+    public void should_return_Message_to_custom_when_parking_lot_is_full(){
+        //given
+        Car car=new Car();
+
+        ParkingLot parkingLot=new ParkingLot();
+        ParkingBoy parkingBoy=new ParkingBoy(parkingLot);
+        //when
+        parkingLot.setNum(1);
+        //There is only one parking space in the parking lot
+        Ticket ticket=parkingBoy.park(car);
+        Ticket anothorTicket=parkingBoy.park(car);
+        String returnMessage=parkingBoy.passMessageToCustom();
+
+        //then
+        assertSame(returnMessage,"Not enough position.");
     }
 }

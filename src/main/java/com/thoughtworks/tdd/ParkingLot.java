@@ -37,22 +37,24 @@ public class ParkingLot {
             this.getParkingCarTicket().put(ticket,car);
             return ticket;
         }else{
-            this.setMessageToCustom("ParkingLot is full");
-            System.out.println("ParkingLot is full");
+            this.setMessageToCustom("Not enough position.");
+            System.out.println("Not enough position.");
             return null;
         }
     }
 
     public Car getCar(Ticket ticket) {
-        if(ticket.getTag().equals("not fetch")&&this.getParkingCarTicket().get(ticket)!=null) {
-            ticket.setFetchedMessage("is fetched");
-            return (Car) this.getParkingCarTicket().get(ticket);
-        }else if(ticket==null){
+
+        if(ticket==null){
             this.setMessageToCustom("Please provide your parking ticket.");
             System.out.println("Please provide your parking ticket.");
             return null;
         }
-        else{
+
+        if(ticket.getTag().equals("not fetch")&&this.getParkingCarTicket().get(ticket)!=null) {
+            ticket.setFetchedMessage("is fetched");
+            return (Car) this.getParkingCarTicket().get(ticket);
+        }else{
             this.setMessageToCustom("Unrecognized parking ticket.");
             System.out.println("Unrecognized parking ticket.");
             return null;
