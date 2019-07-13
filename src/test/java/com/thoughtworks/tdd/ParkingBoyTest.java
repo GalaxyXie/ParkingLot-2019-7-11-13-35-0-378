@@ -3,6 +3,9 @@ package com.thoughtworks.tdd;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertSame;
 
 public class ParkingBoyTest {
@@ -10,8 +13,12 @@ public class ParkingBoyTest {
     public void should_return_car_when_park_car_to_parking_lot_then_gei_it_back(){
         //given
         Car car=new Car();
-        ParkingLot parkingLot=new ParkingLot();
-        ParkingBoy parkingBoy=new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot();
+        ParkingLot parkingLot2=new ParkingLot();
+        List<ParkingLot> parkingLots=new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy=new ParkingBoy(parkingLots);
         //when
         Ticket ticket=parkingBoy.park(car);
         Car fetchedCar= parkingBoy.fetch(ticket);
@@ -23,8 +30,12 @@ public class ParkingBoyTest {
         //given
         Car firstCar=new Car();
         Car secondCar=new Car();
-        ParkingLot parkingLot=new ParkingLot();
-        ParkingBoy parkingBoy=new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot();
+        ParkingLot parkingLot2=new ParkingLot();
+        List<ParkingLot> parkingLots=new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy=new ParkingBoy(parkingLots);
         //when
         Ticket firstTicket=parkingBoy.park(firstCar);
         Ticket secondTicket=parkingBoy.park(secondCar);
@@ -38,87 +49,135 @@ public class ParkingBoyTest {
     public void should_not_fetch_car_when_ticket_is_wrong(){
         //given
         Car car=new Car();
-        ParkingLot parkingLot=new ParkingLot();
-        ParkingBoy parkingBoy=new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot();
+        ParkingLot parkingLot2=new ParkingLot();
+        List<ParkingLot> parkingLots=new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy=new ParkingBoy(parkingLots);
         Ticket ticket=parkingBoy.park(car);
         Ticket wrongTicket=new Ticket("not fetch");
         //when
         Car fetchedCar= parkingBoy.fetch(wrongTicket);
         //then
-        assertSame(fetchedCar,null);
+        assertSame(null,fetchedCar);
     }
     @Test
     public void should_not_fetch_car_when_ticket_is_used(){
         //given
         Car car=new Car();
-        ParkingLot parkingLot=new ParkingLot();
-        ParkingBoy parkingBoy=new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot();
+        ParkingLot parkingLot2=new ParkingLot();
+        List<ParkingLot> parkingLots=new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy=new ParkingBoy(parkingLots);
         //when
         Ticket ticket=parkingBoy.park(car);
         Car fetchedCar= parkingBoy.fetch(ticket);
         Car fetchedAgainCar= parkingBoy.fetch(ticket);
         //then
-        assertSame(fetchedAgainCar,null);
+        assertSame(null,fetchedAgainCar);
     }
     @Test
     public void should_not_park_car_when_parkingLot_is_full(){
         //given
         Car car=new Car();
 
-        ParkingLot parkingLot=new ParkingLot();
-        ParkingBoy parkingBoy=new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot();
+        ParkingLot parkingLot2=new ParkingLot();
+        List<ParkingLot> parkingLots=new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy=new ParkingBoy(parkingLots);
         //when
-        parkingLot.setNum(1);
+        parkingLot1.setNum(0);
+        parkingLot2.setNum(0);
         //There is only one parking space in the parking lot
         Ticket ticket=parkingBoy.park(car);
+
         Ticket anothorTicket=parkingBoy.park(car);
 
         //then
-        assertSame(anothorTicket,null);
+        assertSame(null,anothorTicket);
     }
     @Test
     public void should_return_Message_to_custom_when_parking_tiket_is_wrong(){
         //given
         Car car=new Car();
-        ParkingLot parkingLot=new ParkingLot();
-        ParkingBoy parkingBoy=new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot();
+        ParkingLot parkingLot2=new ParkingLot();
+        List<ParkingLot> parkingLots=new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy=new ParkingBoy(parkingLots);
         Ticket ticket=parkingBoy.park(car);
         Ticket wrongTicket=new Ticket("not fetch");
         //when
         Car fetchedCar= parkingBoy.fetch(wrongTicket);
         String returnMessage=parkingBoy.passMessageToCustom();
         //then
-        assertSame(returnMessage,"Unrecognized parking ticket.");
+        assertSame("Unrecognized parking ticket.",returnMessage);
     }
     @Test
     public void should_return_Message_to_custom_when_parking_tiket_is_null(){
         //given
         Car car=new Car();
-        ParkingLot parkingLot=new ParkingLot();
-        ParkingBoy parkingBoy=new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot();
+        ParkingLot parkingLot2=new ParkingLot();
+        List<ParkingLot> parkingLots=new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy=new ParkingBoy(parkingLots);
         Ticket ticket=parkingBoy.park(car);
 
         //when
         Car fetchedCar= parkingBoy.fetch(null);
         String returnMessage=parkingBoy.passMessageToCustom();
         //then
-        assertSame(returnMessage,"Please provide your parking ticket.");
+        assertSame("Please provide your parking ticket.",returnMessage);
     }
     @Test
     public void should_return_Message_to_custom_when_parking_lot_is_full(){
         //given
         Car car=new Car();
 
-        ParkingLot parkingLot=new ParkingLot();
-        ParkingBoy parkingBoy=new ParkingBoy(parkingLot);
+        ParkingLot parkingLot1=new ParkingLot();
+        ParkingLot parkingLot2=new ParkingLot();
+        List<ParkingLot> parkingLots=new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy=new ParkingBoy(parkingLots);
         //when
-        parkingLot.setNum(1);
+        parkingLot1.setNum(0);
+        parkingLot2.setNum(1);
         //There is only one parking space in the parking lot
         Ticket ticket=parkingBoy.park(car);
         Ticket anothorTicket=parkingBoy.park(car);
         String returnMessage=parkingBoy.passMessageToCustom();
 
         //then
-        assertSame(returnMessage,"Not enough position.");
+        assertSame("Not enough position.",returnMessage);
+    }
+    @Test
+    public void should_park_car_in_parkingLot2_when_parkingLot1_is_full(){
+        //given
+        Car car=new Car();
+
+        ParkingLot parkingLot1=new ParkingLot();
+        ParkingLot parkingLot2=new ParkingLot();
+        List<ParkingLot> parkingLots=new ArrayList<>();
+        parkingLots.add(parkingLot1);
+        parkingLots.add(parkingLot2);
+        ParkingBoy parkingBoy=new ParkingBoy(parkingLots);
+        //when
+        parkingLot1.setNum(0);
+        parkingLot2.setNum(1);
+
+        Ticket ticket=parkingBoy.park(car);
+        Car fetchedCar=parkingBoy.fetch(ticket);
+
+        //then
+        assertSame(car,fetchedCar);
     }
 }

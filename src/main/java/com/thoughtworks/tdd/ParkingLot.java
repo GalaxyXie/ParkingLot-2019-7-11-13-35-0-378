@@ -33,6 +33,8 @@ public class ParkingLot {
     public Ticket park(Car car) {
         if (this.getNum()>0){
             this.setNum(this.getNum()-1);
+            System.out.println("park success");
+            this.setMessageToCustom("park success");
             Ticket ticket=new Ticket("not fetch");
             this.getParkingCarTicket().put(ticket,car);
             return ticket;
@@ -50,8 +52,8 @@ public class ParkingLot {
             System.out.println("Please provide your parking ticket.");
             return null;
         }
-
         if(ticket.getTag().equals("not fetch")&&this.getParkingCarTicket().get(ticket)!=null) {
+
             ticket.setFetchedMessage("is fetched");
             return (Car) this.getParkingCarTicket().get(ticket);
         }else{
