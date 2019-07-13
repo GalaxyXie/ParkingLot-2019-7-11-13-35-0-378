@@ -6,6 +6,16 @@ public class ParkingLot {
     private HashMap parkingCarTicket;
     private int num=10;
     private String messageToCustom;
+    private int serialNumber;
+
+    public int getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(int serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
     public int getNum() {
         return num;
     }
