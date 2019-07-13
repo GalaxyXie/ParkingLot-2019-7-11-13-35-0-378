@@ -34,19 +34,19 @@ public class ParkingBoyTest {
         assertSame(firstCar,fetchedFirstCar);
         assertSame(secondCar,fetchedSecondCar);
     }
-  /*  @Test
+    @Test
     public void should_not_fetch_car_when_ticket_is_wrong(){
         //given
         Car car=new Car();
         ParkingLot parkingLot=new ParkingLot();
         ParkingBoy parkingBoy=new ParkingBoy(parkingLot);
+        Ticket ticket=parkingBoy.park(car);
         Ticket wrongTicket=new Ticket("not fetch");
         //when
-        Ticket ticket=parkingBoy.park(car);
         Car fetchedCar= parkingBoy.fetch(wrongTicket);
         //then
-        final Exception exception= Assertions.assertThrows(Exception.class,()->{parkingBoy.fetch(wrongTicket);});
-    }*/
+        assertSame(fetchedCar,null);
+    }
     @Test
     public void should_not_fetch_car_when_ticket_is_used(){
         //given

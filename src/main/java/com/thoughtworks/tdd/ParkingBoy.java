@@ -2,9 +2,13 @@ package com.thoughtworks.tdd;
 
 public class ParkingBoy {
     private ParkingLot parkingLot;
+
     public ParkingBoy(ParkingLot parkingLot) {
         this.parkingLot=parkingLot;
     }
+
+
+
 
     public ParkingLot getParkingLot() {
         return parkingLot;
@@ -15,14 +19,7 @@ public class ParkingBoy {
     }
 
     public Car fetch(Ticket ticket){
-
-        try {
             Car car = parkingLot.getCar(ticket);
             return car;
-        } catch (Exception e) {
-            System.out.println("I'm here2");
-            throw  e;
-        }
-
     }
 }
