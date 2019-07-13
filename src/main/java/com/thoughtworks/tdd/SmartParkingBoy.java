@@ -18,7 +18,7 @@ public class SmartParkingBoy extends ParkingBoy {
     public void setSerialOfUsingParkingLot(int serialOfUsingParkingLot) {
         this.serialOfUsingParkingLot = serialOfUsingParkingLot;
     }
-
+    @Override
     public Ticket park(Car car) {
        List<Integer> countOfParkingPlace=this.getParkingLots().stream().mapToInt(i->i.getNum()).boxed().collect(Collectors.toList());
         int Max = Collections.max(countOfParkingPlace);

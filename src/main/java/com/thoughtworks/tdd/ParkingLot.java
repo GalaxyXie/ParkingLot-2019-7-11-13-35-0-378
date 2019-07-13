@@ -5,11 +5,23 @@ import java.util.HashMap;
 public class ParkingLot {
     private HashMap parkingCarTicket;
     private int num=10;
+    private int capacity=10;
     private String messageToCustom;
     private int serialNumber;
 
     public int getSerialNumber() {
         return serialNumber;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public ParkingLot(int num, int capacity,int serialNumber) {
+        this.parkingCarTicket =new HashMap<Ticket,Car>();;
+        this.num = num;
+        this.capacity = capacity;
+        this.serialNumber = serialNumber;
     }
 
     public void setSerialNumber(int serialNumber) {
