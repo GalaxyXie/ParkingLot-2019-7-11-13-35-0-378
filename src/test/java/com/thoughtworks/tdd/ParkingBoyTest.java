@@ -34,7 +34,7 @@ public class ParkingBoyTest {
         assertSame(firstCar,fetchedFirstCar);
         assertSame(secondCar,fetchedSecondCar);
     }
-    @Test
+  /*  @Test
     public void should_not_fetch_car_when_ticket_is_wrong(){
         //given
         Car car=new Car();
@@ -46,7 +46,7 @@ public class ParkingBoyTest {
         Car fetchedCar= parkingBoy.fetch(wrongTicket);
         //then
         final Exception exception= Assertions.assertThrows(Exception.class,()->{parkingBoy.fetch(wrongTicket);});
-    }
+    }*/
     @Test
     public void should_not_fetch_car_when_ticket_is_used(){
         //given
@@ -59,5 +59,21 @@ public class ParkingBoyTest {
         Car fetchedAgainCar= parkingBoy.fetch(ticket);
         //then
         assertSame(fetchedAgainCar,null);
+    }
+    @Test
+    public void should_not_park_car_when_parkingLot_is_full(){
+        //given
+        Car car=new Car();
+
+        ParkingLot parkingLot=new ParkingLot();
+        ParkingBoy parkingBoy=new ParkingBoy(parkingLot);
+        //when
+        parkingLot.setNum(1);
+        //There is only one parking space in the parking lot
+        Ticket ticket=parkingBoy.park(car);
+        Ticket anothorTicket=parkingBoy.park(car);
+
+        //then
+        assertSame(anothorTicket,null);
     }
 }

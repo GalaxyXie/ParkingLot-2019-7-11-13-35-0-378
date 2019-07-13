@@ -18,7 +18,6 @@ public class ParkingBoy {
 
         try {
             Car car = parkingLot.getCar(ticket);
-            System.out.println("I'm here1");
             return car;
         } catch (Exception e) {
             System.out.println("I'm here2");

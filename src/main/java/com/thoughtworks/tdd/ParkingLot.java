@@ -30,7 +30,7 @@ public class ParkingLot {
             this.getParkingCarTicket().put(ticket,car);
             return ticket;
         }else{
-            System.out.println("车位已满");
+            System.out.println("ParkingLot is full");
             return null;
         }
     }
