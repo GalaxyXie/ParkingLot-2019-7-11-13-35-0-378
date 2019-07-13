@@ -7,7 +7,9 @@ public class ParkingBoy {
         this.parkingLot=parkingLot;
     }
 
-
+    public String passMessageToCustom(){
+        return this.getParkingLot().getMessageToCustom();
+    }
 
 
     public ParkingLot getParkingLot() {

@@ -76,4 +76,18 @@ public class ParkingBoyTest {
         //then
         assertSame(anothorTicket,null);
     }
+    @Test
+    public void should_return_Message_to_custom_when_parking_tiket_is_wrong(){
+        //given
+        Car car=new Car();
+        ParkingLot parkingLot=new ParkingLot();
+        ParkingBoy parkingBoy=new ParkingBoy(parkingLot);
+        Ticket ticket=parkingBoy.park(car);
+        Ticket wrongTicket=new Ticket("not fetch");
+        //when
+        Car fetchedCar= parkingBoy.fetch(wrongTicket);
+        String returnMessage=parkingLot.getMessageToCustom();
+        //then
+        assertSame(returnMessage,"Unrecognized parking ticket.");
+    }
 }
