@@ -14,8 +14,16 @@ public class ParkingBoy {
         return this.getParkingLot().park(car);
     }
 
-    public Car fetch(Ticket ticket) {
-        Car car=parkingLot.getCar(ticket);
-        return car;
+    public Car fetch(Ticket ticket){
+
+        try {
+            Car car = parkingLot.getCar(ticket);
+            System.out.println("I'm here1");
+            return car;
+        } catch (Exception e) {
+            System.out.println("I'm here2");
+            throw  e;
+        }
+
     }
 }
