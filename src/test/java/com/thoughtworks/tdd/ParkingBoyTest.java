@@ -90,4 +90,18 @@ public class ParkingBoyTest {
         //then
         assertSame(returnMessage,"Unrecognized parking ticket.");
     }
+    @Test
+    public void should_return_Message_to_custom_when_parking_tiket_is_null(){
+        //given
+        Car car=new Car();
+        ParkingLot parkingLot=new ParkingLot();
+        ParkingBoy parkingBoy=new ParkingBoy(parkingLot);
+        Ticket ticket=parkingBoy.park(car);
+
+        //when
+        Car fetchedCar= parkingBoy.fetch(null);
+        String returnMessage=parkingLot.getMessageToCustom();
+        //then
+        assertSame(returnMessage,"Please provide your parking ticket.");
+    }
 }

@@ -47,7 +47,12 @@ public class ParkingLot {
         if(ticket.getTag().equals("not fetch")&&this.getParkingCarTicket().get(ticket)!=null) {
             ticket.setFetchedMessage("is fetched");
             return (Car) this.getParkingCarTicket().get(ticket);
-        }else{
+        }else if(ticket==null){
+            this.setMessageToCustom("Please provide your parking ticket.");
+            System.out.println("Please provide your parking ticket.");
+            return null;
+        }
+        else{
             this.setMessageToCustom("Unrecognized parking ticket.");
             System.out.println("Unrecognized parking ticket.");
             return null;
