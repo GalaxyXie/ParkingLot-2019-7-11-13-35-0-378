@@ -4,24 +4,29 @@ import java.util.List;
 
 public class ParkingBoy {
     private List<ParkingLot> parkingLots = null;
-//    private ParkingLot usingParkingLot=null;
-//
-//    public ParkingLot getUsingParkingLot() {
-//        return usingParkingLot;
-//    }
-//
-//    public void setUsingParkingLot(ParkingLot usingParkingLot) {
-//        this.usingParkingLot=usingParkingLot;
-//    }
+    private ParkingLot usingParkingLot=null;
+
+    public ParkingLot getUsingParkingLot() {
+        return usingParkingLot;
+    }
+
+    public void setUsingParkingLot(ParkingLot usingParkingLot) {
+        this.usingParkingLot=usingParkingLot;
+    }
 
     public ParkingBoy(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
     }
 
     public String passMessageToCustom() {
-
-        if (this.searchAvailableParkingLot() == null) return "Not enough position.";
+        System.out.println("1");
+        if (this.searchAvailableParkingLot() == null)
+            if(this.getUsingParkingLot()==null) {
+                return "Not enough position.";
+            }else{
+                return this.getUsingParkingLot().getMessageToCustom();}
         else {
+            System.out.println("4");
             return this.searchAvailableParkingLot().getMessageToCustom();
         }
     }
@@ -43,8 +48,10 @@ public class ParkingBoy {
         for (ParkingLot i : this.getParkingLots()) {
             Ticket ticket = i.park(car);
             if (ticket == null) {
+                this.setUsingParkingLot(i);
                 continue;
             } else {
+                this.setUsingParkingLot(i);
                 return ticket;
             }
         }

@@ -55,4 +55,8 @@ public class Manager {
         return this.getParkingLotInManage().getCar(ticket);
 
     }
+    public String returnMessageToCustom(ParkingBoy parkingBoy) {
+
+       return parkingBoy.passMessageToCustom();
+    }
 }
