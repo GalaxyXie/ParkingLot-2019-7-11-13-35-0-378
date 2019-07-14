@@ -40,4 +40,19 @@ public class Manager {
     public List<ParkingBoy> getBoys() {
         return boys;
     }
+
+    public ParkingLot getParkingLotInManage() {
+        return parkingLotInManage;
+    }
+
+    public Ticket park(Car car) {
+        Ticket ticket=this.getParkingLotInManage().park(car);
+        return ticket;
+
+    }
+
+    public Car fetch(Ticket ticket) {
+        return this.getParkingLotInManage().getCar(ticket);
+
+    }
 }
