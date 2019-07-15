@@ -47,9 +47,9 @@ public class ParkingBoyTest {
         assertSame(firstCar, fetchedFirstCar);
         assertSame(secondCar, fetchedSecondCar);
     }
-/*
+
     @Test
-    public void should_not_fetch_car_when_ticket_is_wrong() {
+    public void should_not_fetch_car_when_ticket_is_wrong() throws Exception {
         //given
         Car car = new Car();
         ParkingLot parkingLot = new ParkingLot();
@@ -66,7 +66,7 @@ public class ParkingBoyTest {
         // then
         assertThrows(Exception.class, executable);
     }
-
+/*
     @Test
     public void should_not_fetch_car_when_ticket_is_used() {
         //given
