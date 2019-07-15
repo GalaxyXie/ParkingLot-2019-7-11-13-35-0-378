@@ -27,8 +27,8 @@ public class ParkingBoyTest {
         assertEquals(car, fetchedCar);
     }
 
-    /*@Test
-    public void should_return_multiple_cars_when_park_cars_to_parking_lot_then_get_them_back() {
+    @Test
+    public void should_return_multiple_cars_when_park_cars_to_parking_lot_then_get_them_back() throws Exception {
         //given
         Car firstCar = new Car();
         Car secondCar = new Car();
@@ -47,7 +47,7 @@ public class ParkingBoyTest {
         assertSame(firstCar, fetchedFirstCar);
         assertSame(secondCar, fetchedSecondCar);
     }
-
+/*
     @Test
     public void should_not_fetch_car_when_ticket_is_wrong() {
         //given
