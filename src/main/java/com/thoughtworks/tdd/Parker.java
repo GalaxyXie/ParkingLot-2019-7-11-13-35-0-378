@@ -4,7 +4,7 @@ import java.util.List;
 
 abstract public class Parker implements Parkable{
     private List<ParkingLot> parkingLots = null;
-    //private ParkingLot usingParkingLot=null;
+    private ParkingLot usingParkingLot=null;
 
     public Parker(List<ParkingLot> parkingLots) {
         this.parkingLots = parkingLots;
@@ -21,5 +21,13 @@ abstract public class Parker implements Parkable{
                 filter(parkingLot -> parkingLot.getParkingCarTicket().containsKey(ticket))
                 .findFirst().orElseThrow(() -> new Exception("Unrecognized parking ticket."));
        return  parkingLotCanFindCar.getCar(ticket);
+    }
+
+    public void setUsingParkingLot(ParkingLot usingParkingLot) {
+        this.usingParkingLot = usingParkingLot;
+    }
+
+    public ParkingLot getUsingParkingLot() {
+        return usingParkingLot;
     }
 }

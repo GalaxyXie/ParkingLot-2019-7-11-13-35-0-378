@@ -7,6 +7,8 @@ import org.junit.jupiter.api.function.Executable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -116,9 +118,9 @@ public class SmartParkingBoyTest {
         // then
         assertThrows(Exception.class, executable);
     }
-/*
+
     @Test
-    public void should_return_Message_to_custom_when_parking_tiket_is_wrong() {
+    public void should_return_Message_to_custom_when_parking_tiket_is_wrong() throws Exception {
         //given
         Car car = new Car();
         ParkingLot parkingLot1 = new ParkingLot();
@@ -128,12 +130,15 @@ public class SmartParkingBoyTest {
         parkingLots.add(parkingLot2);
         SmartParkingBoy SmartParkingBoy = new SmartParkingBoy(parkingLots);
         Ticket ticket = SmartParkingBoy.park(car);
-        Ticket wrongTicket = new Ticket("not fetch");
-        //when
-        Car fetchedCar = SmartParkingBoy.fetch(wrongTicket);
-        String returnMessage = SmartParkingBoy.passMessageToCustom();
-        //then
-        assertSame("Unrecognized parking ticket.", returnMessage);
+        Ticket wrongTicket = new Ticket();
+        // when
+        Executable executable = () -> {
+            SmartParkingBoy.fetch(wrongTicket);
+        };
+
+        // then
+        Exception exception = assertThrows(Exception.class, executable);
+        assertThat(exception.getMessage(), is("Unrecognized parking ticket."));
     }
 
     @Test
@@ -147,39 +152,19 @@ public class SmartParkingBoyTest {
         parkingLots.add(parkingLot2);
         SmartParkingBoy SmartParkingBoy = new SmartParkingBoy(parkingLots);
         Ticket ticket = SmartParkingBoy.park(car);
+        // when
+        Executable executable = () -> {
+            Car fetchedCar = SmartParkingBoy.fetch(null);
+        };
 
-        //when
-        Car fetchedCar = SmartParkingBoy.fetch(null);
-        String returnMessage = SmartParkingBoy.passMessageToCustom();
-        //then
-        assertSame("Please provide your parking ticket.", returnMessage);
+        // then
+        Exception exception = assertThrows(Exception.class, executable);
+        assertThat(exception.getMessage(), is("Please provide your parking ticket."));
     }
 
-    @Test
-    public void should_return_Message_to_custom_when_parking_lot_is_full() {
-        //given
-        Car car = new Car();
-
-        ParkingLot parkingLot1 = new ParkingLot();
-        ParkingLot parkingLot2 = new ParkingLot();
-        List<ParkingLot> parkingLots = new ArrayList<>();
-        parkingLots.add(parkingLot1);
-        parkingLots.add(parkingLot2);
-        SmartParkingBoy SmartParkingBoy = new SmartParkingBoy(parkingLots);
-        //when
-        parkingLot1.setNum(0);
-        parkingLot2.setNum(1);
-        //There is only one parking space in the parking lot
-        Ticket ticket = SmartParkingBoy.park(car);
-        Ticket anothorTicket = SmartParkingBoy.park(car);
-        String returnMessage = SmartParkingBoy.passMessageToCustom();
-
-        //then
-        assertSame("Not enough position.", returnMessage);
-    }
 
     @Test
-    public void should_park_car_in_parkingLot2_when_parkingLot1_is_full() {
+    public void should_park_car_in_parkingLot2_when_parkingLot1_is_full() throws Exception {
         //given
         Car car = new Car();
 
@@ -201,7 +186,7 @@ public class SmartParkingBoyTest {
     }
 
     @Test
-    public void should_park_car_in_parkingLot_which_has_more_parking_place() {
+    public void should_park_car_in_parkingLot_which_has_more_parking_place() throws Exception {
         //given
         Car car = new Car();
 
@@ -218,11 +203,11 @@ public class SmartParkingBoyTest {
         parkingLot2.setNum(8);
 
         Ticket ticket = SmartParkingBoy.park(car);
-        int serialNumber = SmartParkingBoy.getSerialOfUsingParkingLot();
+        int serialNumber = SmartParkingBoy.getUsingParkingLot().getSerialNumber();
         Car fetchedCar = SmartParkingBoy.fetch(ticket);
 
         //then
         assertSame(2, serialNumber);
     }
-*/
+
 }
