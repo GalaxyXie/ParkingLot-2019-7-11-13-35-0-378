@@ -44,7 +44,7 @@ public class ParkingLot {
     }
 
     public Ticket park(Car car) {
-        Ticket ticket = new Ticket("not fetch");
+        Ticket ticket = new Ticket();
         this.getParkingCarTicket().put(ticket, car);
         return ticket;
     }

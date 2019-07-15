@@ -57,7 +57,7 @@ public class ParkingBoyTest {
         parkingLots.add(parkingLot);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Ticket ticket = parkingBoy.park(car);
-        Ticket wrongTicket = new Ticket("not fetch");
+        Ticket wrongTicket = new Ticket();
         // when
         Executable executable = () -> {
             parkingBoy.fetch(wrongTicket);
@@ -66,9 +66,9 @@ public class ParkingBoyTest {
         // then
         assertThrows(Exception.class, executable);
     }
-/*
+
     @Test
-    public void should_not_fetch_car_when_ticket_is_used() {
+    public void should_not_fetch_car_when_ticket_is_used() throws Exception {
         //given
         Car car = new Car();
         ParkingLot parkingLot1 = new ParkingLot();
@@ -80,11 +80,15 @@ public class ParkingBoyTest {
         //when
         Ticket ticket = parkingBoy.park(car);
         Car fetchedCar = parkingBoy.fetch(ticket);
-        Car fetchedAgainCar = parkingBoy.fetch(ticket);
-        //then
-        assertSame(null, fetchedAgainCar);
-    }
+        // when
+        Executable executable = () -> {
+            parkingBoy.fetch(ticket);
+        };
 
+        // then
+        assertThrows(Exception.class, executable);
+    }
+/*
     @Test
     public void should_not_park_car_when_parkingLot_is_full() {
         //given
