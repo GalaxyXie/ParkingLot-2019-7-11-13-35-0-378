@@ -1,12 +1,15 @@
 package com.thoughtworks.tdd;
 
-import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
 import java.util.ArrayList;
 import java.util.List;
 
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingBoyTest {
@@ -100,11 +103,9 @@ public class ParkingBoyTest {
         parkingLots.add(parkingLot1);
         parkingLots.add(parkingLot2);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
-        //when
+
         parkingLot1.setNum(0);
         parkingLot2.setNum(0);
-        //There is only one parking space in the parking lot
-
 
         // when
         Executable executable = () -> {
@@ -114,9 +115,9 @@ public class ParkingBoyTest {
         // then
         assertThrows(Exception.class, executable);
     }
-/*
+
     @Test
-    public void should_return_Message_to_custom_when_parking_tiket_is_wrong() {
+    public void should_return_Message_to_custom_when_parking_tiket_is_wrong() throws Exception {
         //given
         Car car = new Car();
         ParkingLot parkingLot1 = new ParkingLot();
@@ -126,14 +127,16 @@ public class ParkingBoyTest {
         parkingLots.add(parkingLot2);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         Ticket ticket = parkingBoy.park(car);
-        Ticket wrongTicket = new Ticket("not fetch");
+        Ticket wrongTicket = new Ticket();
         //when
-        Car fetchedCar = parkingBoy.fetch(wrongTicket);
-        String returnMessage = parkingBoy.passMessageToCustom();
+        Executable executable = () -> {
+            Car fetchedCar = parkingBoy.fetch(wrongTicket);
+        };
         //then
-        assertSame("Unrecognized parking ticket.", returnMessage);
+        Exception exception = assertThrows(Exception.class, executable);
+        assertThat(exception.getMessage(), is("Unrecognized parking ticket."));
     }
-
+/*
     @Test
     public void should_return_Message_to_custom_when_parking_tiket_is_null() {
         //given
