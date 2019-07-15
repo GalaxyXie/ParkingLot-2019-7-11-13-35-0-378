@@ -182,12 +182,11 @@ public class ParkingBoyTest {
         Exception exception = assertThrows(Exception.class, executable);
         assertThat(exception.getMessage(), is("Not enough position."));
     }
-/*
+
     @Test
-    public void should_park_car_in_parkingLot2_when_parkingLot1_is_full() {
+    public void should_park_car_in_parkingLot2_when_parkingLot1_is_full() throws Exception {
         //given
         Car car = new Car();
-
         ParkingLot parkingLot1 = new ParkingLot();
         ParkingLot parkingLot2 = new ParkingLot();
         List<ParkingLot> parkingLots = new ArrayList<>();
@@ -204,7 +203,7 @@ public class ParkingBoyTest {
         //then
         assertSame(car, fetchedCar);
     }
-
+/*
     @Test
     public void should_park_car_in_parkingLot_which_has_more_parking_place() {
         //given
