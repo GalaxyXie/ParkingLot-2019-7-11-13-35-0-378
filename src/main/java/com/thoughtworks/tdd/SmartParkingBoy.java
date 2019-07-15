@@ -14,6 +14,8 @@ public class SmartParkingBoy extends Parker {
         ParkingLot parkingLotCanParkCar=this.getParkingLots().stream().
                 reduce((pre,cur)->pre.getNum()>=cur.getNum()?pre:cur).
                 orElseThrow(() -> new Exception("Not enough position."));
+        if(parkingLotCanParkCar.getNum()<=0)
+            throw new Exception("Not enough position.");
         return  parkingLotCanParkCar.park(car);
     }
 }

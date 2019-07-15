@@ -2,11 +2,13 @@ package com.thoughtworks.tdd;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SmartParkingBoyTest {
     @Test
@@ -46,9 +48,9 @@ public class SmartParkingBoyTest {
         assertSame(firstCar, fetchedFirstCar);
         assertSame(secondCar, fetchedSecondCar);
     }
-/*
+
     @Test
-    public void should_not_fetch_car_when_ticket_is_wrong() {
+    public void should_not_fetch_car_when_ticket_is_wrong() throws Exception {
         //given
         Car car = new Car();
         ParkingLot parkingLot1 = new ParkingLot();
@@ -58,15 +60,18 @@ public class SmartParkingBoyTest {
         parkingLots.add(parkingLot2);
         SmartParkingBoy SmartParkingBoy = new SmartParkingBoy(parkingLots);
         Ticket ticket = SmartParkingBoy.park(car);
-        Ticket wrongTicket = new Ticket("not fetch");
-        //when
-        Car fetchedCar = SmartParkingBoy.fetch(wrongTicket);
-        //then
-        assertSame(null, fetchedCar);
+        Ticket wrongTicket = new Ticket();
+        // when
+        Executable executable = () -> {
+            SmartParkingBoy.fetch(wrongTicket);
+        };
+
+        // then
+        assertThrows(Exception.class, executable);
     }
 
     @Test
-    public void should_not_fetch_car_when_ticket_is_used() {
+    public void should_not_fetch_car_when_ticket_is_used() throws Exception {
         //given
         Car car = new Car();
         ParkingLot parkingLot1 = new ParkingLot();
@@ -78,13 +83,17 @@ public class SmartParkingBoyTest {
         //when
         Ticket ticket = SmartParkingBoy.park(car);
         Car fetchedCar = SmartParkingBoy.fetch(ticket);
-        Car fetchedAgainCar = SmartParkingBoy.fetch(ticket);
-        //then
-        assertSame(null, fetchedAgainCar);
+        // when
+        Executable executable = () -> {
+            SmartParkingBoy.fetch(ticket);
+        };
+
+        // then
+        assertThrows(Exception.class, executable);
     }
 
     @Test
-    public void should_not_park_car_when_parkingLot_is_full() {
+    public void should_not_park_car_when_parkingLot_is_full() throws Exception {
         //given
         Car car = new Car();
 
@@ -98,14 +107,16 @@ public class SmartParkingBoyTest {
         parkingLot1.setNum(0);
         parkingLot2.setNum(0);
         //There is only one parking space in the parking lot
-        Ticket ticket = SmartParkingBoy.park(car);
 
-        Ticket anothorTicket = SmartParkingBoy.park(car);
+        // when
+        Executable executable = () -> {
+            Ticket ticket = SmartParkingBoy.park(car);
+        };
 
-        //then
-        assertSame(null, anothorTicket);
+        // then
+        assertThrows(Exception.class, executable);
     }
-
+/*
     @Test
     public void should_return_Message_to_custom_when_parking_tiket_is_wrong() {
         //given
