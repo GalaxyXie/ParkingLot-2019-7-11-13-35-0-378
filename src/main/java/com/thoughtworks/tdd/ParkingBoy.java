@@ -2,71 +2,17 @@ package com.thoughtworks.tdd;
 
 import java.util.List;
 
-public class ParkingBoy {
-    private List<ParkingLot> parkingLots = null;
-    private ParkingLot usingParkingLot=null;
-
-    public ParkingLot getUsingParkingLot() {
-        return usingParkingLot;
-    }
-
-    public void setUsingParkingLot(ParkingLot usingParkingLot) {
-        this.usingParkingLot=usingParkingLot;
-    }
+public class ParkingBoy extends Parker{
 
     public ParkingBoy(List<ParkingLot> parkingLots) {
-        this.parkingLots = parkingLots;
+        super(parkingLots);
+    }
+    public Ticket park(Car car)throws Exception {
+        ParkingLot parkingLotCanParkCar=this.getParkingLots().stream().
+                filter(parkingLot -> parkingLot.getNum()>0)
+                .findFirst().orElseThrow(() -> new Exception("Not enough position."));
+        return  parkingLotCanParkCar.park(car);
     }
 
-    public String passMessageToCustom() {
-        System.out.println("1");
-        if (this.searchAvailableParkingLot() == null)
-            if(this.getUsingParkingLot()==null) {
-                return "Not enough position.";
-            }else{
-                return this.getUsingParkingLot().getMessageToCustom();}
-        else {
-            System.out.println("4");
-            return this.searchAvailableParkingLot().getMessageToCustom();
-        }
-    }
-
-    public List<ParkingLot> getParkingLots() {
-        return parkingLots;
-    }
-
-    public ParkingLot searchAvailableParkingLot() {
-        for (ParkingLot i : this.getParkingLots()) {
-            if (i.getNum() > 0)
-                return i;
-        }
-
-        return null;
-    }
-
-    public Ticket park(Car car) {
-        for (ParkingLot i : this.getParkingLots()) {
-            Ticket ticket = i.park(car);
-            if (ticket == null) {
-                this.setUsingParkingLot(i);
-                continue;
-            } else {
-                this.setUsingParkingLot(i);
-                return ticket;
-            }
-        }
-        return null;
-    }
-
-    public Car fetch(Ticket ticket) {
-        for (ParkingLot i : parkingLots) {
-            Car car = i.getCar(ticket);
-            if (car != null) {
-                return car;
-            }
-        }
-        return null;
-
-    }
 
 }

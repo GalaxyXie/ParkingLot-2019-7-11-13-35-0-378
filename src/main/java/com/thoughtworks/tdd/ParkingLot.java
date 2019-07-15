@@ -6,7 +6,6 @@ public class ParkingLot {
     private HashMap parkingCarTicket;
     private int num = 10;
     private int capacity = 10;
-    private String messageToCustom;
     private int serialNumber;
 
     public int getSerialNumber() {
@@ -19,7 +18,6 @@ public class ParkingLot {
 
     public ParkingLot(int num, int capacity, int serialNumber) {
         this.parkingCarTicket = new HashMap<Ticket, Car>();
-        ;
         this.num = num;
         this.capacity = capacity;
         this.serialNumber = serialNumber;
@@ -37,14 +35,6 @@ public class ParkingLot {
         this.num = num;
     }
 
-    public String getMessageToCustom() {
-        return messageToCustom;
-    }
-
-    public void setMessageToCustom(String messageToCustom) {
-        this.messageToCustom = messageToCustom;
-    }
-
     public ParkingLot() {
         this.parkingCarTicket = new HashMap<Ticket, Car>();
     }
@@ -54,36 +44,15 @@ public class ParkingLot {
     }
 
     public Ticket park(Car car) {
-        if (this.getNum() > 0) {
-            this.setNum(this.getNum() - 1);
-            System.out.println("park success");
-            this.setMessageToCustom("park success");
-            Ticket ticket = new Ticket("not fetch");
-            this.getParkingCarTicket().put(ticket, car);
-            return ticket;
-        } else {
-            this.setMessageToCustom("Not enough position.");
-            System.out.println("Not enough position.");
-            return null;
-        }
+        Ticket ticket = new Ticket("not fetch");
+        this.getParkingCarTicket().put(ticket, car);
+        return ticket;
     }
 
     public Car getCar(Ticket ticket) {
-
-        if (ticket == null) {
-            this.setMessageToCustom("Please provide your parking ticket.");
-            System.out.println("Please provide your parking ticket.");
-            return null;
-        }
-        if (ticket.getTag().equals("not fetch") && this.getParkingCarTicket().get(ticket) != null) {
-
-            ticket.setFetchedMessage("is fetched");
-            return (Car) this.getParkingCarTicket().get(ticket);
-        } else {
-            this.setMessageToCustom("Unrecognized parking ticket.");
-            System.out.println("Unrecognized parking ticket.");
-            return null;
-        }
+        Car car =(Car)parkingCarTicket.get(ticket);
+        parkingCarTicket.remove(ticket);
+        return car;
 
     }
 }
