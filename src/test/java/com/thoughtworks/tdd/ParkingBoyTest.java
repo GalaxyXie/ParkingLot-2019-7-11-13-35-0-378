@@ -203,30 +203,5 @@ public class ParkingBoyTest {
         //then
         assertSame(car, fetchedCar);
     }
-/*
-    @Test
-    public void should_park_car_in_parkingLot_which_has_more_parking_place() {
-        //given
-        Car car = new Car();
-
-        ParkingLot parkingLot1 = new ParkingLot();
-        parkingLot1.setSerialNumber(1);
-        ParkingLot parkingLot2 = new ParkingLot();
-        parkingLot2.setSerialNumber(2);
-        List<ParkingLot> parkingLots = new ArrayList<>();
-        parkingLots.add(parkingLot1);
-        parkingLots.add(parkingLot2);
-        SmartParkingBoy smartParkingBoy = new SmartParkingBoy(parkingLots);
-        //when
-        parkingLot1.setNum(4);
-        parkingLot2.setNum(8);
-
-        Ticket ticket = smartParkingBoy.park(car);
-        int serialNumber = smartParkingBoy.getSerialOfUsingParkingLot();
-        Car fetchedCar = smartParkingBoy.fetch(ticket);
-
-        //then
-        assertSame(2, serialNumber);
-    }*/
 
 }

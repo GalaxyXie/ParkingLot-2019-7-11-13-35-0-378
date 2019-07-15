@@ -19,7 +19,7 @@ public class SuperSmartParkingBoy extends SmartParkingBoy {
         }
         double Max = Collections.max(countOfParkingPlace);
         ParkingLot usingParkingLot = this.getParkingLots().get(countOfParkingPlace.indexOf(Max));
-        this.setSerialOfUsingParkingLot(usingParkingLot.getSerialNumber());
+
         return usingParkingLot.park(car);
 
     }

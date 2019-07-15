@@ -14,5 +14,4 @@ public class ParkingBoy extends Parker{
         return  parkingLotCanParkCar.park(car);
     }
 
-
 }
