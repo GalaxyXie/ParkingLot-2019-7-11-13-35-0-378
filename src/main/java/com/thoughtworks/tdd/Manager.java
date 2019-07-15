@@ -2,6 +2,7 @@ package com.thoughtworks.tdd;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Manager {
     List<ParkingBoy> boys;
@@ -46,17 +47,17 @@ public class Manager {
     }
 
     public Ticket park(Car car) {
-        Ticket ticket=this.getParkingLotInManage().park(car);
+        Ticket ticket = this.getParkingLotInManage().park(car);
         return ticket;
 
     }
 
     public Car fetch(Ticket ticket) {
         return this.getParkingLotInManage().getCar(ticket);
-
     }
+
     public String returnMessageToCustom(ParkingBoy parkingBoy) {
 
-       return parkingBoy.passMessageToCustom();
+        return parkingBoy.passMessageToCustom();
     }
 }

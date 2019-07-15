@@ -19,14 +19,13 @@ public class ParkingBoy {
     }
 
     public String passMessageToCustom() {
-        System.out.println("1");
+
         if (this.searchAvailableParkingLot() == null)
             if(this.getUsingParkingLot()==null) {
                 return "Not enough position.";
             }else{
                 return this.getUsingParkingLot().getMessageToCustom();}
         else {
-            System.out.println("4");
             return this.searchAvailableParkingLot().getMessageToCustom();
         }
     }
@@ -40,7 +39,6 @@ public class ParkingBoy {
             if (i.getNum() > 0)
                 return i;
         }
-
         return null;
     }
 
@@ -66,7 +64,6 @@ public class ParkingBoy {
             }
         }
         return null;
-
     }
 
 }

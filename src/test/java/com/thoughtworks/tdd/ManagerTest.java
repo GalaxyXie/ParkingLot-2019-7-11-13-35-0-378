@@ -13,12 +13,14 @@ public class ManagerTest {
         //given
         Car car=new Car();
         ParkingLot parkingLot1=new ParkingLot(10,10,1);
-        ParkingLot parkingLot2=new ParkingLot(10,10,1);
+        ParkingLot parkingLot2=new ParkingLot(7,10,1);
+        ParkingLot parkingLot3=new ParkingLot(10,10,1);
         List<ParkingLot> parkingLotList1=new ArrayList<>();
         List<ParkingLot> parkingLotList2=new ArrayList<>();
         List<ParkingBoy> parkingBoys=new ArrayList<>();
         parkingLotList1.add(parkingLot1);
         parkingLotList2.add(parkingLot2);
+        parkingLotList2.add(parkingLot3);
         ParkingBoy parkingBoy=new ParkingBoy(parkingLotList1);
         SmartParkingBoy smartParkingBoy=new SmartParkingBoy(parkingLotList2);
         //List Only has boy1
@@ -48,8 +50,6 @@ public class ManagerTest {
         List<ParkingBoy> parkingBoys=new ArrayList<>();
         parkingLotList1.add(parkingLot1);
 
-
-
         //parkingLot1 in this manager‘s management
         Manager manager=new Manager(parkingBoys,parkingLot1);
 
@@ -65,7 +65,8 @@ public class ManagerTest {
         //given
         Car car=new Car();
         ParkingLot parkingLot1=new ParkingLot(0,10,1);
-        ParkingLot parkingLot2=new ParkingLot(10,10,1);
+        ParkingLot parkingLot2=new ParkingLot(7,10,1);
+
         List<ParkingLot> parkingLotList1=new ArrayList<>();
         List<ParkingLot> parkingLotList2=new ArrayList<>();
         List<ParkingBoy> parkingBoys=new ArrayList<>();
@@ -73,19 +74,19 @@ public class ManagerTest {
         parkingLotList2.add(parkingLot2);
         ParkingBoy parkingBoy=new ParkingBoy(parkingLotList1);
         SmartParkingBoy smartParkingBoy=new SmartParkingBoy(parkingLotList2);
-        //List Only has boy1
+
         parkingBoys.add(parkingBoy);
         parkingBoys.add(smartParkingBoy);
         //parkingLot1 in this manager‘s management
         Manager manager=new Manager(parkingBoys,parkingLot1);
-        Ticket wrontTicket=new Ticket("not fetch");
+        Ticket wrongTicket=new Ticket("not fetch");
         //when
         //ticket is null because parking boy did not park success
         Ticket ticket = manager.specifyAParkingBoyParkCar(parkingBoy,car);
         String messageFromParkingBoy = manager.returnMessageToCustom(parkingBoy);
         manager.specifyAParkingBoyFetchCar(parkingBoy,ticket);
         String messageFromParkingBoyFetchCar = manager.returnMessageToCustom(parkingBoy);
-        manager.specifyAParkingBoyFetchCar(parkingBoy,wrontTicket);
+        manager.specifyAParkingBoyFetchCar(parkingBoy,wrongTicket);
         String messageFromParkingBoyFetchCarAgain = manager.returnMessageToCustom(parkingBoy);
         //then
         assertSame("Not enough position.",messageFromParkingBoy);

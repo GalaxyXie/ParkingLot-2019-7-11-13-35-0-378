@@ -2,11 +2,18 @@ package com.thoughtworks.tdd;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.bytebuddy.matcher.ElementMatchers.is;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ParkingBoyTest {
     @Test
@@ -122,7 +129,17 @@ public class ParkingBoyTest {
         Car fetchedCar = parkingBoy.fetch(wrongTicket);
         String returnMessage = parkingBoy.passMessageToCustom();
         //then
+
+        // when
+        //I should use Executable to show the wrong message
+        Executable executable = () -> {
+            parkingBoy.fetch(wrongTicket);
+        };
+
+        // then
+        assertThrows(Exception.class, executable);
         assertSame("Unrecognized parking ticket.", returnMessage);
+
     }
 
     @Test
