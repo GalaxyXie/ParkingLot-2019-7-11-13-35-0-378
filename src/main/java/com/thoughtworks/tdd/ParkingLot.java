@@ -46,6 +46,7 @@ public class ParkingLot {
     public Ticket park(Car car) {
         Ticket ticket = new Ticket();
         this.getParkingCarTicket().put(ticket, car);
+        this.setNum(this.getNum()-1);
         return ticket;
     }
 

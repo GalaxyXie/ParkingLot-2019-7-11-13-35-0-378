@@ -157,9 +157,9 @@ public class ParkingBoyTest {
         assertThat(exception.getMessage(), is("Please provide your parking ticket."));
 
     }
-/*
+
     @Test
-    public void should_return_Message_to_custom_when_parking_lot_is_full() {
+    public void should_return_Message_to_custom_when_parking_lot_is_full() throws Exception {
         //given
         Car car = new Car();
 
@@ -174,13 +174,15 @@ public class ParkingBoyTest {
         parkingLot2.setNum(1);
         //There is only one parking space in the parking lot
         Ticket ticket = parkingBoy.park(car);
-        Ticket anothorTicket = parkingBoy.park(car);
-
-
+        //when
+        Executable executable = () -> {
+            parkingBoy.park(car);
+        };
         //then
-        assertSame("Not enough position.", returnMessage);
+        Exception exception = assertThrows(Exception.class, executable);
+        assertThat(exception.getMessage(), is("Not enough position."));
     }
-
+/*
     @Test
     public void should_park_car_in_parkingLot2_when_parkingLot1_is_full() {
         //given
