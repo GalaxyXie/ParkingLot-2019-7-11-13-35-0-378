@@ -78,9 +78,9 @@ public class ParkingBoyTest {
         parkingLots.add(parkingLot2);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         //when
+
         Ticket ticket = parkingBoy.park(car);
         Car fetchedCar = parkingBoy.fetch(ticket);
-        // when
         Executable executable = () -> {
             parkingBoy.fetch(ticket);
         };
@@ -88,9 +88,9 @@ public class ParkingBoyTest {
         // then
         assertThrows(Exception.class, executable);
     }
-/*
+
     @Test
-    public void should_not_park_car_when_parkingLot_is_full() {
+    public void should_not_park_car_when_parkingLot_is_full() throws Exception {
         //given
         Car car = new Car();
 
@@ -104,14 +104,17 @@ public class ParkingBoyTest {
         parkingLot1.setNum(0);
         parkingLot2.setNum(0);
         //There is only one parking space in the parking lot
-        Ticket ticket = parkingBoy.park(car);
 
-        Ticket anothorTicket = parkingBoy.park(car);
 
-        //then
-        assertSame(null, anothorTicket);
+        // when
+        Executable executable = () -> {
+            Ticket ticket = parkingBoy.park(car);
+        };
+
+        // then
+        assertThrows(Exception.class, executable);
     }
-
+/*
     @Test
     public void should_return_Message_to_custom_when_parking_tiket_is_wrong() {
         //given
