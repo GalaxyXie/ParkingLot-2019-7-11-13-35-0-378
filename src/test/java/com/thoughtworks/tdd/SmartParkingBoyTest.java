@@ -1,6 +1,5 @@
 package com.thoughtworks.tdd;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
@@ -106,8 +105,8 @@ public class SmartParkingBoyTest {
         parkingLots.add(parkingLot2);
         SmartParkingBoy SmartParkingBoy = new SmartParkingBoy(parkingLots);
         //when
-        parkingLot1.setNum(0);
-        parkingLot2.setNum(0);
+        parkingLot1.setNumber(0);
+        parkingLot2.setNumber(0);
         //There is only one parking space in the parking lot
 
         // when
@@ -175,8 +174,8 @@ public class SmartParkingBoyTest {
         parkingLots.add(parkingLot2);
         SmartParkingBoy SmartParkingBoy = new SmartParkingBoy(parkingLots);
         //when
-        parkingLot1.setNum(0);
-        parkingLot2.setNum(1);
+        parkingLot1.setNumber(0);
+        parkingLot2.setNumber(1);
 
         Ticket ticket = SmartParkingBoy.park(car);
         Car fetchedCar = SmartParkingBoy.fetch(ticket);
@@ -199,8 +198,8 @@ public class SmartParkingBoyTest {
         parkingLots.add(parkingLot2);
         SmartParkingBoy SmartParkingBoy = new SmartParkingBoy(parkingLots);
         //when
-        parkingLot1.setNum(4);
-        parkingLot2.setNum(8);
+        parkingLot1.setNumber(4);
+        parkingLot2.setNumber(8);
 
         Ticket ticket = SmartParkingBoy.park(car);
         int serialNumber = SmartParkingBoy.getUsingParkingLot().getSerialNumber();

@@ -104,8 +104,8 @@ public class ParkingBoyTest {
         parkingLots.add(parkingLot2);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
 
-        parkingLot1.setNum(0);
-        parkingLot2.setNum(0);
+        parkingLot1.setNumber(0);
+        parkingLot2.setNumber(0);
 
         // when
         Executable executable = () -> {
@@ -170,8 +170,8 @@ public class ParkingBoyTest {
         parkingLots.add(parkingLot2);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         //when
-        parkingLot1.setNum(0);
-        parkingLot2.setNum(1);
+        parkingLot1.setNumber(0);
+        parkingLot2.setNumber(1);
         //There is only one parking space in the parking lot
         Ticket ticket = parkingBoy.park(car);
         //when
@@ -194,8 +194,8 @@ public class ParkingBoyTest {
         parkingLots.add(parkingLot2);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLots);
         //when
-        parkingLot1.setNum(0);
-        parkingLot2.setNum(1);
+        parkingLot1.setNumber(0);
+        parkingLot2.setNumber(1);
 
         Ticket ticket = parkingBoy.park(car);
         Car fetchedCar = parkingBoy.fetch(ticket);

@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class ParkingLot {
     private HashMap parkingCarTicket;
-    private int num = 10;
+    private int number = 10;
     private int capacity = 10;
     private int serialNumber;
 
@@ -16,9 +16,9 @@ public class ParkingLot {
         return capacity;
     }
 
-    public ParkingLot(int num, int capacity, int serialNumber) {
+    public ParkingLot(int number, int capacity, int serialNumber) {
         this.parkingCarTicket = new HashMap<Ticket, Car>();
-        this.num = num;
+        this.number = number;
         this.capacity = capacity;
         this.serialNumber = serialNumber;
     }
@@ -27,12 +27,12 @@ public class ParkingLot {
         this.serialNumber = serialNumber;
     }
 
-    public int getNum() {
-        return num;
+    public int getNumber() {
+        return number;
     }
 
-    public void setNum(int num) {
-        this.num = num;
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public ParkingLot() {
@@ -46,7 +46,7 @@ public class ParkingLot {
     public Ticket park(Car car) {
         Ticket ticket = new Ticket();
         this.getParkingCarTicket().put(ticket, car);
-        this.setNum(this.getNum()-1);
+        this.setNumber(this.getNumber()-1);
         return ticket;
     }
 
